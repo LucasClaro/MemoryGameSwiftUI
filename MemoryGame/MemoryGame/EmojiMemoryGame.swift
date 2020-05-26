@@ -10,8 +10,9 @@ import Foundation
 
 //Esse é o arquivo do ViewModel
 
-class EmojiMemoryGame {
-    private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+class EmojiMemoryGame: ObservableObject {
+    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    // ^^ chama o objectWillChange.send() sempre que essa var mudar
     
     static func createMemoryGame() -> MemoryGame<String> {
         let emojis: Array<String> = ["🎃", "👻", "🕷", "🌙", "🦴"]
