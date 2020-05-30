@@ -8,20 +8,55 @@
 
 import SwiftUI
 
+enum ColorsEnum{
+    case Orange
+    case Green
+    case Yellow
+    case Red
+    case Pink
+    case Blue
+    
+    func colorCode() -> Color{
+        switch self {
+        case .Orange:
+            return Color.orange
+        case .Green:
+            return Color.green
+        case .Yellow:
+            return Color.yellow
+        case .Red:
+            return Color.red
+        case .Pink:
+            return Color.pink
+        case.Blue:
+            return Color.blue
+        }
+    }
+}
+
 struct EmojiMemoryGameView: View {
     @ObservedObject  var viewModel: EmojiMemoryGame
     
     var body: some View {
-        HStack {
-            
-            ForEach(viewModel.cards) { card in
+        VStack{
+            HStack{
+                Text(viewModel.themeName)
+                Spacer()
+                Text(String(viewModel.points))
+                Spacer()
+                Button("Novo Jogo", action: viewModel.NewGame)
+            }
+                .padding()
+            Grid(viewModel.cards) { card in
+                
                 CardView(card: card).onTapGesture {
                     self.viewModel.choose(card: card)
                 }
+                    .padding()
             }
-
+                .padding()
+                .foregroundColor(viewModel.color.colorCode())
         }
-            .padding()
     }
 }
 
@@ -42,17 +77,17 @@ struct CardView: View {
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(lineWidth: BorderWidth)
-                    .foregroundColor(Color.orange)
                 Text(card.content)
             }
             else {
-                RoundedRectangle(cornerRadius: cornerRadius)
+                if !card.isMatched{
+                    RoundedRectangle(cornerRadius: cornerRadius)
                     .fill()
-                    .foregroundColor(Color.orange)
+                }
             }
             
         }
-        .aspectRatio(CGSize(width: 2, height: 3), contentMode: .fit)
+        //.aspectRatio(CGSize(width: 2, height: 3), contentMode: .fit)
         .font(Font.system(size:  fontSize(for: size)))
         
     }

@@ -10,27 +10,72 @@ import Foundation
 
 // Esse é o arquivo do Model 
 
-struct MemoryGame<CardContent> {
+struct MemoryGame<CardContent> where CardContent: Equatable{
     //O tipo genérico ^^ deve ser definido por quem chamar, igual um vetor
+    //                                      ^^ exige que o tipo genérico seja equatable para comparar os conteúdos
     
     var cards: Array<Card>
+    var theme: ThemesModel.theme
+    var points: Int = 0
+    
+    var indexOfOneAndOnlyFacedUpCard: Int? {
+        get {
+            let faceUpCardIndeces = cards.indices.filter { index in cards[index].isFaceUp}
+            if faceUpCardIndeces.count == 1 {
+                return faceUpCardIndeces.first
+            }
+            else {
+                return nil
+            }
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = index == newValue
+            }
+        }
+    }
+    
+    //MARK: Choose function
     
     mutating func choose(card: Card){
         print("carta escolhida: \(card)")
-        let cardIndex: Int = self.index(of: card)
-        self.cards[cardIndex].isFaceUp = !self.cards[cardIndex].isFaceUp
-    }
-    
-    func index(of card: Card) -> Int{
-        for index in 0..<self.cards.count {
-            if self.cards[index].id == card.id {
-                return index
+        if let choosenIndex: Int = self.cards.index(of: card), !cards[choosenIndex].isFaceUp, !cards[choosenIndex].isMatched {
+            
+            if let potentialMatchIndex = indexOfOneAndOnlyFacedUpCard{
+                if cards[choosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[choosenIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
+                    points += 2
+                }
+                else{
+                    if !cards[choosenIndex].wasFlipped{
+                        cards[choosenIndex].wasFlipped = true
+                    }
+                    else{
+                        points -= 1
+                    }
+                    
+                    if !cards[potentialMatchIndex].wasFlipped{
+                        cards[potentialMatchIndex].wasFlipped = true
+                    }
+                    else{
+                        points -= 1
+                    }
+                }
+
+                self.cards[choosenIndex].isFaceUp = !self.cards[choosenIndex].isFaceUp
+            }
+            else {
+                indexOfOneAndOnlyFacedUpCard = choosenIndex
             }
         }
-        return 0 // TODO: não encontrei!
     }
     
-    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
+    //MARK: Init
+    
+    init(numberOfPairsOfCards: Int, theme: ThemesModel.theme, cardContentFactory: (Int) -> CardContent) {
+        self.theme = theme
+        
         cards = Array<Card>()
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
@@ -40,11 +85,14 @@ struct MemoryGame<CardContent> {
         cards.shuffle()
     }
     
+    //MARK: Card Struct
+    
     struct Card: Identifiable {
         var id: Int
         
-        var isFaceUp: Bool = true
+        var isFaceUp: Bool = false
         var isMatched: Bool = false
+        var wasFlipped: Bool = false
         var content: CardContent //Tipo genérico (don't care type)
     }
 }
