@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
-    var itens: [Item]
-    var viewForItem: (Item) -> ItemView
+    private var itens: [Item]
+    private var viewForItem: (Item) -> ItemView
     
     init(_ itens: [Item], viewForItem: @escaping (Item) -> ItemView){
         //                              ^^ Diz que essa função vai ser chamada fora desse método (no body no caso)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B605023124859F73009F7CE3 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B605023024859F73009F7CE3 /* Pie.swift */; };
+		B60502362485A38E009F7CE3 /* Cardifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60502352485A38E009F7CE3 /* Cardifier.swift */; };
 		B69715EF2480373000AF25DA /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69715EE2480373000AF25DA /* Grid.swift */; };
 		B69715F124803ECD00AF25DA /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69715F024803ECD00AF25DA /* GridLayout.swift */; };
 		B69715F32480456600AF25DA /* Array+IndexOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69715F22480456600AF25DA /* Array+IndexOf.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B605023024859F73009F7CE3 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
+		B60502352485A38E009F7CE3 /* Cardifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardifier.swift; sourceTree = "<group>"; };
 		B69715EE2480373000AF25DA /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		B69715F024803ECD00AF25DA /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		B69715F22480456600AF25DA /* Array+IndexOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+IndexOf.swift"; sourceTree = "<group>"; };
@@ -49,6 +53,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B605022F24859F5B009F7CE3 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				B605023024859F73009F7CE3 /* Pie.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		B60502322485A343009F7CE3 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				B60502352485A38E009F7CE3 /* Cardifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
 		B6A6944B2475C0C200BF8DAA = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +88,8 @@
 		B6A694562475C0C200BF8DAA /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				B60502322485A343009F7CE3 /* ViewModifier */,
+				B605022F24859F5B009F7CE3 /* Shapes */,
 				B6A694572475C0C200BF8DAA /* AppDelegate.swift */,
 				B69715F22480456600AF25DA /* Array+IndexOf.swift */,
 				B6A694592475C0C200BF8DAA /* SceneDelegate.swift */,
@@ -169,6 +191,8 @@
 				B6A6946C2476FD0200BF8DAA /* MemoryGame.swift in Sources */,
 				B6A6945C2475C0C200BF8DAA /* EmojiMemoryGameView.swift in Sources */,
 				B69715F52482FAFA00AF25DA /* Themes.swift in Sources */,
+				B605023124859F73009F7CE3 /* Pie.swift in Sources */,
+				B60502362485A38E009F7CE3 /* Cardifier.swift in Sources */,
 				B6A6946E2476FFFB00BF8DAA /* EmojiMemoryGame.swift in Sources */,
 				B69715F32480456600AF25DA /* Array+IndexOf.swift in Sources */,
 				B69715F124803ECD00AF25DA /* GridLayout.swift in Sources */,

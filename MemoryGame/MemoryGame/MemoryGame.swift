@@ -14,9 +14,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
     //O tipo genérico ^^ deve ser definido por quem chamar, igual um vetor
     //                                      ^^ exige que o tipo genérico seja equatable para comparar os conteúdos
     
-    var cards: Array<Card>
-    var theme: ThemesModel.theme
-    var points: Int = 0
+    private(set) var cards: Array<Card>
+    private(set) var theme: ThemesModel.theme
+    private(set) var points: Int = 0
     
     var indexOfOneAndOnlyFacedUpCard: Int? {
         get {
